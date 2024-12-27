@@ -7,6 +7,15 @@ Docker Commands:
 6. docker ps (list down all active containers)
 7. docker ps -a (list down all containers)
 8. docker stop ContainerId
-9. Kubernetes:
+**Kubernetes:**
+1. kubectl apply -f deployment.yaml   --> Create pods
+2. kubectl apply -f service.yaml  --> A Service routes traffic to pods based on the labels defined in the Service's selector field.
+   1 and 2 will start pods
+3. kubectl get deployment
+4. kubectl get service
+5. kubectl get pods
+6. to kill deployemnt: delete deployment current-usa-time-deployment ( will kill pods)
+7. to kill service: kubectl delete service current-usa-time-service
+
    ![img.png](img.png)
    ![img_1.png](img_1.png)
