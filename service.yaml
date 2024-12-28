@@ -8,5 +8,5 @@ spec:
   ports:
     - protocol: TCP
       port: 9999 # Exposed port
-      targetPort: 7777 # The container port your app listens on
+      targetPort: 7777 # code port
   type: LoadBalancer # For external access; use NodePort if LoadBalancer isn't available

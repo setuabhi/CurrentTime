@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: current-usa-time-deployment
 spec:
-  replicas: 2 # Number of pods
+  replicas: 2 #  This value means you want two instances of your Pod running concurrently.
   selector:
     matchLabels:
       app: current-usa-time
@@ -12,8 +12,8 @@ spec:
       labels:
         app: current-usa-time
     spec:
-      containers:
+      containers: # you can give more containers if you want multiple containers to run in single pod
         - name: current-usa-time
-          image: seturini/current-usa-time:latest # Replace with your image name and tag
+          image: seturini/current-usa-time:latest
           ports:
-            - containerPort: 7777 # Replace with the port your app listens on
+            - containerPort: 7777 # Code port

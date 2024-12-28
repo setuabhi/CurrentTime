@@ -11,6 +11,8 @@ Docker Commands:
 
 **Kubernetes:**
    check kubernetes live or not: kubectl cluster-info
+0. In Kubernetes, a Pod is the smallest deployable unit that you can create and manage. It's a fundamental concept in Kubernetes and represents a single instance of a running process in your cluster:
+   Imagine you have a web application that consists of a web server and a caching server. You could deploy these two components in separate containers within the same Pod. This allows them to easily communicate with each other (e.g., the web server can access the cache on localhost) and be managed as a single unit.
 1. kubectl apply -f deployment.yaml   --> Create pods
 2. kubectl apply -f service.yaml  --> A Service routes traffic to pods based on the labels defined in the Service's selector field.
    1 and 2 will start pods
