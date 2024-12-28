@@ -27,7 +27,7 @@ Docker Commands:
    ![img.png](img.png)
    ![img_1.png](img_1.png)
 
-**Kakfa**
+**Kafka**
 1. Start kafka in docker container: docker-compose up -d
 2. To see topics: docker exec -it kafka kafka-topics --bootstrap-server localhost:9092 --list
 3. Create Topic: docker exec -it kafka kafka-topics --bootstrap-server localhost:9092 --create --topic my-topic --partitions 3 --replication-factor 1
