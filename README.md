@@ -1,29 +1,29 @@
 Swagger: http://localhost:7777/swagger-ui/index.html
 
 Docker Commands:
-   check docker live or not: docker info
-1. docker build -t current-usa-time .
-2. docker run -p dockerPort:CodePort current-usa-time
-3. docker pull seturini/current-usa-time
-4. docker tag current-usa-time seturini/current-usa-time:latest
-5. docker push seturini/current-usa-time:latest
-6. docker ps (list down all active containers)
-7. docker ps -a (list down all containers)
-8. docker stop ContainerId
+
+1. check docker live or not: docker info
+2. docker build -t current-usa-time .
+3. docker run -p dockerPort:CodePort current-usa-time
+4. docker pull seturini/current-usa-time
+5. docker tag current-usa-time seturini/current-usa-time:latest
+6. docker push seturini/current-usa-time:latest
+7. docker ps (list down all active containers)
+8. docker ps -a (list down all containers)
+9. docker stop ContainerId
 
 **Kubernetes:**
    check kubernetes live or not: kubectl cluster-info
 
-0. In Kubernetes, a Pod is the smallest deployable unit that you can create and manage. It's a fundamental concept in Kubernetes and represents a single instance of a running process in your cluster:
-   Imagine you have a web application that consists of a web server and a caching server. You could deploy these two components in separate containers within the same Pod. This allows them to easily communicate with each other (e.g., the web server can access the cache on localhost) and be managed as a single unit.
-1. kubectl apply -f deployment.yaml   --> Create pods
-2. kubectl apply -f service.yaml  --> A Service routes traffic to pods based on the labels defined in the Service's selector field.
-   1 and 2 will start pods
-3. kubectl get deployment
-4. kubectl get service
-5. kubectl get pods
-6. to kill deployemnt: kubectl delete deployment current-usa-time-deployment ( will kill pods)
-7. to kill service: kubectl delete service current-usa-time-service
+1. In Kubernetes, a Pod is the smallest deployable unit that you can create and manage. It's a fundamental concept in Kubernetes and represents a single instance of a running process in your cluster:
+2. Imagine you have a web application that consists of a web server and a caching server. You could deploy these two components in separate containers within the same Pod. This allows them to easily communicate with each other (e.g., the web server can access the cache on localhost) and be managed as a single unit.
+3. kubectl apply -f deployment.yaml   --> Create pods
+4. kubectl apply -f service.yaml  --> A Service routes traffic to pods based on the labels defined in the Service's selector field.
+5. kubectl get deployment
+6. kubectl get service
+7. kubectl get pods
+8. to kill deployment: kubectl delete deployment current-usa-time-deployment ( will kill pods)
+9. to kill service: kubectl delete service current-usa-time-service
 
    ![img.png](img.png)
    ![img_1.png](img_1.png)
