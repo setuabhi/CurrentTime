@@ -1,0 +1,19 @@
+server:
+  port: 7777
+
+spring:
+  profile: dev
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    consumer:
+      group-id: my-group
+      enable-auto-commit: true      # Automatically commit offsets
+      auto-offset-reset: earliest   # Consume from the earliest offset if no offset is found
+      auto-commit-interval: 1000ms # Commit offsets every 1 second
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    admin:
+      client-id: kafka-admin
