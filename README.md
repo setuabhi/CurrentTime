@@ -8,6 +8,7 @@ Docker Commands:
 6. docker ps (list down all active containers)
 7. docker ps -a (list down all containers)
 8. docker stop ContainerId
+
 **Kubernetes:**
    check kubernetes live or not: kubectl cluster-info
 1. kubectl apply -f deployment.yaml   --> Create pods
