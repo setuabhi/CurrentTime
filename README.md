@@ -13,6 +13,19 @@ Docker Commands:
 9. docker stop ContainerId
 
 **Kubernetes:**
+   Why we need it ?
+1. Scaling: Automatically scale containers based on demand.
+2. High Availability: Ensure containers are restarted and rescheduled if they fail.
+3. Load Balancing: Distribute traffic across multiple containers.
+4. Self-Healing: Automatically restart or reschedule failed containers.
+5. Service Discovery: Manage networking between containers automatically.
+6. Automated Rollouts: Handle safe deployments and rollbacks.
+7. Resource Management: Allocate CPU/memory to prevent overuse.
+8. Multi-container Coordination: Manage complex applications with multiple containers.
+9. Environment Consistency: Ensure consistent behavior across environments.
+10. Multi-cloud Support: Run containers across different cloud providers.
+
+
    check kubernetes live or not: kubectl cluster-info
 
 1. In Kubernetes, a Pod is the smallest deployable unit that you can create and manage. It's a fundamental concept in Kubernetes and represents a single instance of a running process in your cluster:
