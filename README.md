@@ -1,3 +1,5 @@
+Swagger: http://localhost:7777/swagger-ui/index.html
+
 Docker Commands:
    check docker live or not: docker info
 1. docker build -t current-usa-time .
