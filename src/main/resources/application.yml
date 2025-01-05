@@ -5,6 +5,15 @@ spring:
   profile: dev
   kafka:
     bootstrap-servers: localhost:9092
+    streams:
+      application-id: kafka-streams-app # Unique application ID for Kafka Streams
+      bootstrap-servers: localhost:9092 # Kafka broker for the Streams application
+      properties:
+        default.key.serde: org.apache.kafka.common.serialization.Serdes$StringSerde
+        default.value.serde: org.apache.kafka.common.serialization.Serdes$StringSerde
+        commit.interval.ms: 1000  # Commit interval for state stores
+        cache.max.bytes.buffering: 10485760  # Max cache size for buffering (10 MB)
+        state.dir: /tmp/kafka-streams-state # Directory for state stores
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
