@@ -11,6 +11,13 @@ Docker Commands:
 7. docker ps (list down all active containers)
 8. docker ps -a (list down all containers)
 9. docker stop ContainerId
+10. docker-compose.yml used to define and configure multiple containers
+11. docker run - to create and start container
+12. docker start - to only start container
+13. docker stop - to stop container
+14. docker rm ContainedId - to remove container
+15. docker-compose.override.yml - to override setting and config of docker-compose.yml
+16. docker logs containerId - To see logs
 
 **Kubernetes:**
    Why we need it ?
