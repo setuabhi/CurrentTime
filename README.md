@@ -53,8 +53,12 @@ Docker Commands:
 2. To see topics: docker exec -it kafka kafka-topics --bootstrap-server localhost:9092 --list
 3. Create Topic: docker exec -it kafka kafka-topics --bootstrap-server localhost:9092 --create --topic my-topic --partitions 3 --replication-factor 1
       Replication Factor: The number of copies of each partition that are maintained across different brokers in your Kafka cluster, we have only one broker so kept it as 1
-      How it works: When you create a topic with a replication factor greater than 1, Kafka distributes the partitions and their replicas across the available brokers. For example, with a replication factor of 3 and 2partitions, each partition will have 3 copies stored on 3 different brokers (ideally), Each replica contains the exact same data as the other replicas of that partition..   
+      How it works: When you create a topic with a replication factor greater than 1, Kafka distributes the partitions and their replicas across the available brokers. For example, with a replication factor of 3 and 2partitions, each partition will have 3 copies stored on 3 different brokers (ideally), Each replica contains the exact same data as the other replicas of that partition.. 
       Fault Tolerance: If a broker goes down, the replicas on the other brokers can take over, ensuring that data is still available and consumers can continue to read and write messages.
+      Consumer LAG: Group property : Messages in the topic - Messages Consumed
+      If there is one partition and two consumer groups, the message will be read by both consumer groups independently.
+      The maximum number of active consumers in a group should be equals to the number of partitions. Extra consumers will sit idle.
+      Different Partition will have different data, we can control it too by passing same key, same key data will go to same partition
 4. Describe specific topic: docker exec -it kafka kafka-topics --bootstrap-server localhost:9092 --describe --topic my-topic
 5. Delete topic: docker exec -it kafka kafka-topics --bootstrap-server localhost:9092 --delete --topic my-topic
 6. Benefits of Using client-id: 

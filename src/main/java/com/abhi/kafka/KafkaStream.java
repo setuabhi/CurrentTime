@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class KafkaStream {
-    //KStream<String, String> that's why key serde and value serde are Strings
+    //KStream<String, String> bcoz key serde and value serde are Strings
     @Bean
     public KStream<String, String> kStream(StreamsBuilder streamsBuilder) {
         KStream<String, String> stream = streamsBuilder.stream("my-topic");
