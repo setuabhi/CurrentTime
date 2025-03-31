@@ -59,6 +59,7 @@ Docker Commands:
       If there is one partition and two consumer groups, the message will be read by both consumer groups independently.
       The maximum number of active consumers in a group should be equals to the number of partitions. Extra consumers will sit idle.
       Different Partition will have different data, we can control it too by passing same key, same key data will go to same partition
+      Kafka Streams used send messaage from one topic to another (KafkaStream.java)
 4. Describe specific topic: docker exec -it kafka kafka-topics --bootstrap-server localhost:9092 --describe --topic my-topic
 5. Delete topic: docker exec -it kafka kafka-topics --bootstrap-server localhost:9092 --delete --topic my-topic
 6. Benefits of Using client-id: 
