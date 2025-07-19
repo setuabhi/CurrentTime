@@ -56,9 +56,10 @@ Docker Commands:
       How it works: When you create a topic with a replication factor greater than 1, Kafka distributes the partitions and their replicas across the available brokers. For example, with a replication factor of 3 and 2partitions, each partition will have 3 copies stored on 3 different brokers (ideally), Each replica contains the exact same data as the other replicas of that partition.. 
       Fault Tolerance: If a broker goes down, the replicas on the other brokers can take over, ensuring that data is still available and consumers can continue to read and write messages.
       Consumer LAG: Group property : Messages in the topic - Messages Consumed
-      If there is one partition and two consumer groups, the message will be read by both consumer groups independently.
+      If there is one partition and two consumer groups, the same message will be read by both consumer groups independently.
       The maximum number of active consumers in a group should be equals to the number of partitions. Extra consumers will sit idle.
       Different Partition will have different data, we can control it too by passing same key, same key data will go to same partition
+      Let's say we have 2 partition, one consumer group and 2 consumers setup , then c1 will get p1 data and c2 will get p2 data while if only one consumer present then c1 will get both p1, p2 data 
       Kafka Streams used send messaage from one topic to another (KafkaStream.java)
 4. Describe specific topic: docker exec -it kafka kafka-topics --bootstrap-server localhost:9092 --describe --topic my-topic
 5. Delete topic: docker exec -it kafka kafka-topics --bootstrap-server localhost:9092 --delete --topic my-topic
