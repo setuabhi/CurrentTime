@@ -3,13 +3,14 @@ package com.abhi.kafka;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.annotation.TopicPartition;
+import org.springframework.kafka.support.Acknowledgment;
 import org.springframework.stereotype.Service;
 
 @Service
 public class KafkaConsumerService {
 
     @KafkaListener(topicPartitions = @TopicPartition(topic = "my-topic", partitions = {"0"}), groupId = "my-group") // to control partition
-    public void consume(String message) {
+    public void consume2(String message) {
         System.out.println("Consumed message my-topic my-group: " + message);
     }
 
@@ -23,10 +24,12 @@ public class KafkaConsumerService {
         System.out.println("Offset: " + record.offset());
     }
 
-    // either this or consume will get message since there is only 1 partition
+    // either this or consume2 will get message since there is only 1 partition
     @KafkaListener(topics = "my-topic", groupId = "my-group")
-    public void consumeInSameGroup(String message) {
+    public void consumeInSameGroup(String message, Acknowledgment ack) {
         System.out.println("Consumed message by second consumer from group 1: " + message);
+        // ✅ manually commit offset only after successful processing
+        ack.acknowledge(); // set enable-auto-commit: false
     }
 
     @KafkaListener(topics = "my-topic-2", groupId = "my-group") //Message is coming from Stream
