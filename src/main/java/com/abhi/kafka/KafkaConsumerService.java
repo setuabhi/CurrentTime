@@ -21,7 +21,7 @@ public class KafkaConsumerService {
         System.out.println("Consumed message my-topic my-group2: " + record.value());
         System.out.println("Key: " + record.key());
         System.out.println("Partition: " + record.partition());
-        System.out.println("Offset: " + record.offset());
+        System.out.println("Offset: " + record.offset()); // till this index msg is read
     }
 
     // either this or consume2 will get message since there is only 1 partition

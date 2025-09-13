@@ -1,53 +1,6 @@
 Swagger: http://localhost:7777/swagger-ui/index.html
 
-Docker Commands:
 
-      1. check docker live or not: docker info
-      2. docker build -t current-usa-time .
-      3. docker run -p dockerPort:CodePort current-usa-time
-      4. docker pull seturini/current-usa-time
-      5. docker tag current-usa-time seturini/current-usa-time:latest
-      6. docker push seturini/current-usa-time:latest
-      7. docker ps (list down all active containers)
-      8. docker ps -a (list down all containers)
-      9. docker stop ContainerId
-      10. docker-compose.yml used to define and configure multiple containers
-      11. docker run - to create and start container
-      12. docker start - to only start container
-      13. docker stop - to stop container
-      14. docker rm ContainedId - to remove container
-      15. docker-compose.override.yml - to override setting and config of docker-compose.yml
-      16. docker logs containerId - To see logs
-
-**Kubernetes:**
-
-      Why we need it ?
-      1. Scaling: Automatically scale containers based on demand.
-      2. High Availability: Ensure containers are restarted and rescheduled if they fail.
-      3. Load Balancing: Distribute traffic across multiple containers.
-      4. Self-Healing: Automatically restart or reschedule failed containers.
-      5. Service Discovery: Manage networking between containers automatically.
-      6. Automated Rollouts: Handle safe deployments and rollbacks.
-      7. Resource Management: Allocate CPU/memory to prevent overuse.
-      8. Multi-container Coordination: Manage complex applications with multiple containers.
-      9. Environment Consistency: Ensure consistent behavior across environments.
-      10. Multi-cloud Support: Run containers across different cloud providers.
-
-
-   check kubernetes live or not: kubectl cluster-info
-
-      1. In Kubernetes, a Pod is the smallest deployable unit that you can create and manage. It's a fundamental concept in Kubernetes and represents a single instance of a running process in your cluster:
-      2. Imagine you have a web application that consists of a web server and a caching server. You could deploy these two components in separate containers within the same Pod. This allows them to easily communicate with each other (e.g., the web server can access the cache on localhost) and be managed as a single unit.
-      3. kubectl apply -f deployment.yaml   --> Create pods
-      4. kubectl apply -f service.yaml  --> A Service routes traffic to pods based on the labels defined in the Service's selector field.
-      5. kubectl get deployment
-      6. kubectl get service
-      7. kubectl get pods
-      8. to kill deployment: kubectl delete deployment current-usa-time-deployment ( will kill pods)
-      9. to kill service: kubectl delete service current-usa-time-service
-
-      ![img.png](img.png)
-      ![img_1.png](img_1.png)
 
 **Kafka Commands**
 
@@ -69,7 +22,7 @@ Docker Commands:
       Different Partition will have different data, we can control it too by passing same key, same key data will go to same partition
       Let's say we have 2 partition, one consumer group and 2 consumers setup , then c1 will get p1 data and c2 will get p2 data while if only one consumer present then c1 will get both p1, p2 data
 
-      Kafka Streams used send messaage from one topic to another (KafkaStream.java)
+      Kafka Streams used send messaage from one topic to another (KafkaStream.java) we need to create bean which will return KStream
 
       4. Describe specific topic: docker exec -it kafka kafka-topics --bootstrap-server localhost:9092 --describe --topic my-topic
       5. Delete topic: docker exec -it kafka kafka-topics --bootstrap-server localhost:9092 --delete --topic my-topic
@@ -86,7 +39,7 @@ Docker Commands:
 
       1. Replication Factor 2 and partition 3 means if any publisher publish data it will be divided into 3 partitions and all 3 partitions data will be stored in kafka1 and kafka2 broker
 
-      2. Replication factor <= No of brokers
+      2. Replication factor <= No of brokers, zookeeper + kafka1 + kafka2 = Kafka cluster
 
       3. Leader vs Follower
          Leader: The broker that handles all reads and writes for a partition. Producers send data here. Consumers also fetch data here.
@@ -102,7 +55,7 @@ Docker Commands:
             Ack to producer: If acks=all, producer waits until both leader and follower confirm.
             Failover: If kafka1 (leader of P0) goes down → follower kafka2 is promoted to leader.
       
-      4. ISR = In-Sync Replicas: It’s the set of replicas (leader + followers) that are fully caught up with the leader’s log. 
+      4. ISR = In-Sync Replicas: It’s the set of  followers that are fully caught up with the leader’s log. 
          How it works:
             Each partition has 1 leader and N-1 followers.
             Followers constantly pull data from the leader.
@@ -143,7 +96,7 @@ Docker Commands:
 
          👉 Problem: If this zombie accepts writes from producers, those writes are lost (because the real leader + ISR don’t know about them).
 
-         ⚡ How Kafka fixes this → Epochs
+         ⚡ How Kafka fixes this → Epochs (understand as counter)
 
          Kafka uses a leader epoch to prevent zombies from corrupting data.
          Leader Epoch: Every time a new leader is elected for a partition, Kafka increments a leader epoch number.
@@ -158,7 +111,7 @@ Docker Commands:
             
             👉 This ensures only the latest leader can accept writes, killing the zombie problem.
 
-      8. Offset: Property of consumer group tha't why one partiton can have multiple Consumer group and offset will be different in each CG
+      8. Offset: Property of consumer group that's why one partiton can have multiple Consumer group and offset will be different in each CG
 
         Types:
         a. Auto Commit:
